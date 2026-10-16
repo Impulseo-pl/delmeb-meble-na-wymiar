@@ -1665,3 +1665,117 @@ footer{view-transition-name:mt-foot}
 
 /* === szary tekst dociągnięty do czytelności (WCAG 4.5 na wszystkich tłach) === */
 :root{--muted:#64685F;}
+
+
+/* =====================================================================
+   SKÓRKA „KLINDWORTH" (prośba Szymona 16.10.2026: wygląd jak klindworthroofing.com)
+   Beż + grafit + złoty brąz, szeryfowe wersaliki, przyciski-pigułki z obwódką,
+   zdjęcie w nagłówku wycięte klinem i przecięte ukośnymi pasami.
+   Ten blok jest OSTATNI w pliku - wygrywa z wcześniejszymi :root i auto-paletą.
+   ===================================================================== */
+:root{
+  --paper:#EDE9E2; --paper-2:#E4DFD6; --paper-3:#DAD4C9;
+  --ink:#24262B; --ink-soft:#3A3D44; --muted:#5C5850;
+  --line:rgba(36,38,43,.14);
+  --accent:#AC9376; --accent-d:#6B5841; --accent-soft:rgba(172,147,118,.14);
+  --accent-text:#6B5841;
+  --dark:#24262B;
+  --font-display:'Fraunces',serif;
+}
+body{background:var(--paper)}
+
+/* typografia: szeryfowe wersaliki jak u wzorca */
+h1,h2{font-weight:500;text-transform:uppercase;letter-spacing:-.005em;line-height:1.04;font-variation-settings:"opsz" 144}
+h3{font-weight:500;letter-spacing:-.005em}
+.eyebrow{color:var(--accent-d);font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.eyebrow::before{display:none}
+
+/* przyciski: pigułka z cienką obwódką */
+.btn,.nav .nav-links a.btn{border-radius:999px}
+.btn-accent,.nav .nav-links a.btn-accent,.btn-ghost,.btn-light{
+  background:transparent;color:var(--ink);border:1px solid var(--accent);box-shadow:none}
+.nav .nav-links a.btn-accent{background:var(--ink);border-color:var(--ink);color:var(--paper)}
+.btn-accent:hover,.btn-ghost:hover,.btn-light:hover{background:var(--ink);border-color:var(--ink);color:var(--paper);transform:none;box-shadow:none}
+.nav .nav-links a.btn-accent:hover{background:var(--accent-d);border-color:var(--accent-d);color:#fff}
+.btn .arr{color:var(--accent)}
+.btn:hover .arr{color:inherit}
+
+/* pasek: beż, menu w białej pigułce, telefon po prawej */
+.nav{background:color-mix(in srgb,var(--paper) 92%,transparent);border-bottom:0}
+.nav.is-stuck{box-shadow:0 1px 0 var(--line)}
+.nav-inner{height:88px}
+.brand-logo{border-radius:10px}
+.nav-links{background:#fff;border-radius:999px;padding:6px 6px 6px 26px;gap:var(--space-5)}
+.nav-links a:not(.btn){color:var(--ink)}
+.nav-links a:not(.btn)::after{background:var(--accent)}
+.nav-phone{font-weight:600;color:var(--ink);white-space:nowrap;font-size:var(--text-sm);display:inline-flex;gap:6px;align-items:center}
+.nav-phone .arr{color:var(--accent);transition:transform .4s var(--mt-ease,ease)}
+.nav-phone:hover .arr{transform:translateX(4px)}
+@media(max-width:1180px){.nav-phone{display:none}}
+/* main.js rezerwuje inline padding-right pod odpięty CTA - tu CTA siedzi w pigułce, więc rezerwa zbędna */
+@media(min-width:681px){.nav .nav-links{padding-right:6px!important}}
+@media(max-width:1000px) and (min-width:681px){.nav-links{padding-left:18px;gap:var(--space-4)}}
+@media(max-width:680px){.nav-inner{height:72px}.nav-links{background:var(--paper);border-radius:0;padding:var(--space-4) 6%}}
+/* telefon: dolny pasek z grafitowym przyciskiem (złoty pod białym napisem miał za słaby kontrast) */
+.sr-book{background:var(--ink);color:var(--paper)}
+
+/* ---------- HERO strony głównej: tekst na beżu, zdjęcie w klinie z pasami ---------- */
+.hero-cine.hero-kl{background:var(--paper);min-height:clamp(560px,calc(100svh - 88px),860px);border-bottom:0;align-items:center}
+.hero-kl::after{display:none}
+.hero-kl .kl-art{position:absolute;top:0;right:0;bottom:0;width:56%;overflow:hidden;
+  clip-path:polygon(0 50%,24% 0,100% 0,100% 100%,24% 100%)}
+.hero-kl .kl-art>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
+/* ukośne beżowe pasy przecinające zdjęcie (motyw „X" z wzorca) */
+.hero-kl .kl-art::after,.pagehead::after{content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  background:
+    linear-gradient(118deg,transparent 54%,var(--paper) 54%,var(--paper) 57.5%,transparent 57.5%),
+    linear-gradient(62deg,transparent 63%,var(--paper) 63%,var(--paper) 66.5%,transparent 66.5%)}
+.hero-kl .wrap{padding-block:var(--space-8)}
+.hero-kl .hero-copy{max-width:min(560px,40%)}
+.hero-kl .brandmark{color:var(--accent-d);font-family:var(--font-body);font-weight:500;letter-spacing:.16em;text-transform:uppercase}
+.hero-cine.hero-kl .brandmark.bm-s{font-size:.82rem}
+.hero-cine.hero-kl h1{color:var(--ink);font-size:clamp(2.4rem,1.4rem + 2.9vw,4.3rem);text-wrap:balance}
+.hero-cine.hero-kl .lead{color:var(--ink-soft);max-width:46ch}
+@media(max-width:1100px){.hero-kl .hero-copy{max-width:48%}}
+@media(max-width:900px){
+  .hero-cine.hero-kl{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding:0}
+  .hero-kl .kl-art{position:relative;width:100%;height:min(62vw,420px);order:-1;
+    clip-path:polygon(0 0,100% 0,100% 88%,50% 100%,0 88%)}
+  .hero-kl .wrap{padding-block:var(--space-6) var(--space-8)}
+  .hero-kl .hero-copy{max-width:none}
+}
+
+/* ---------- NAGŁÓWKI PODSTRON: ten sam motyw ---------- */
+.pagehead{background:var(--paper);min-height:clamp(380px,52svh,560px);align-items:center;border-bottom:0}
+.pagehead img{left:auto;right:0;width:52%;clip-path:polygon(0 50%,22% 0,100% 0,100% 100%,22% 100%)}
+.pagehead::after{left:auto;right:0;width:52%}
+.pagehead .wrap{color:var(--ink);padding-block:var(--space-8)}
+.pagehead .wrap>*{max-width:min(520px,42%)}
+.pagehead h1{color:var(--ink);text-shadow:none;font-size:clamp(2.3rem,1.5rem + 2.4vw,3.9rem)}
+.pagehead .eyebrow{color:var(--accent-d)}
+.pagehead p{color:var(--ink-soft);text-shadow:none}
+@media(max-width:900px){
+  .pagehead{display:flex;flex-direction:column;align-items:stretch;min-height:0;padding:0}
+  .pagehead img{position:relative;inset:auto;width:100%;height:min(56vw,340px);
+    clip-path:polygon(0 0,100% 0,100% 88%,50% 100%,0 88%)}
+  .pagehead::after{left:0;right:0;top:0;bottom:auto;width:100%;height:min(56vw,340px)}
+  .pagehead .wrap{padding-block:var(--space-6) var(--space-7)}
+  .pagehead .wrap>*{max-width:none}
+}
+
+/* ---------- sekcje ciemne (grafit) ---------- */
+.strip,.cta,footer,.kl-dark{background:var(--dark);color:var(--paper)}
+.strip .item{border-left-color:var(--accent)}
+.kl-dark{padding-block:clamp(56px,7vw,110px)}
+.cta{background:var(--dark);color:var(--paper)}
+.cta h2{color:var(--paper)}
+.cta p{color:rgba(237,233,226,.78)}
+.cta .eyebrow{color:var(--accent)}
+.cta .btn-light,.cta .btn-ghost-cta{color:var(--paper);border-color:var(--accent);background:transparent}
+.cta .btn-light:hover,.cta .btn-ghost-cta:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+footer .foot-col h4{color:var(--accent);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;font-weight:500}
+.gateway .g-ttl{text-transform:uppercase;font-weight:500;letter-spacing:.01em}
+.opinie{background:var(--paper-2)}
+.kl-dark .head h2{color:var(--paper)}
+.kl-dark .eyebrow{color:var(--accent)}
+.kl-dark .head{margin-bottom:var(--space-7)}
